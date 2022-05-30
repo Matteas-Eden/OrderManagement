@@ -11,7 +11,6 @@ namespace Order.Management
         // Shouldn't they be either protected or private?
         public string Name { get; protected set; }
         public int Price { get; protected set;  }
-        public int AdditionalCharge { get; protected set; }
         public int RedShapes { get; protected set; }
         public int BlueShapes { get; protected set; }
         public int YellowShapes { get; protected set; }
@@ -22,7 +21,7 @@ namespace Order.Management
 
         public int AdditionalChargeTotal()
         {
-            return RedShapes * AdditionalCharge;
+            return RedShapes * Globals.ExtraChargeForRed;
         }
 
         public virtual int Total()

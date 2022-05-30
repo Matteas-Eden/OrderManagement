@@ -8,13 +8,12 @@ namespace Order.Management
     {
 
         // Can be made constant private
-        public int SquarePrice = 1;
+        private const int SquarePrice = 1;
 
         public Square(int redSquares, int blueSquares, int yellowSquares)
         {
             Name = "Square";
             base.Price = SquarePrice;
-            AdditionalCharge = 1;
             base.RedShapes = redSquares;
             base.BlueShapes = blueSquares;
             base.YellowShapes = yellowSquares;

@@ -7,12 +7,11 @@ namespace Order.Management
     class Circle : Shape
     {
         // Can be made constant private
-        public int circlePrice = 3;
+        private const int circlePrice = 3;
         public Circle(int red, int blue, int yellow)
         {
             Name = "Circle";
             base.Price = circlePrice;
-            AdditionalCharge = 1;
             base.RedShapes = red;
             base.BlueShapes = blue;
             base.YellowShapes = yellow;

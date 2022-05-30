@@ -17,13 +17,7 @@ namespace Order.Management
             GenerateTable();
             OrderDetails();
         }
-
-        public void RedPaintSurcharge()
-        {
-            Console.WriteLine("Red Color Surcharge       " + TotalAmountOfRedShapes() + " @ $" +
-                              MyOrder.OrderedBlocks[0].AdditionalCharge + " ppi = $" + TotalPriceRedPaintSurcharge());
-        }
-
+        
         private int TotalAmountOfRedShapes()
         {
             var amountOfRedShapes = 0;
@@ -39,32 +33,46 @@ namespace Order.Management
 
         private void OrderDetails()
         {
-            OrderSquareDetails();
-            OrderTriangleDetails();
-            OrderCircleDetails();
+            Console.WriteLine("\n");
+            OrderShapeDetails();
             RedPaintSurcharge();
         }
 
-        public int TotalPriceRedPaintSurcharge()
+        private int TotalPriceRedPaintSurcharge()
         {
-            return TotalAmountOfRedShapes() * MyOrder.OrderedBlocks[0].AdditionalCharge;
-        }
-       
-        public void OrderSquareDetails()
-        {
-            Console.WriteLine("\nSquares 		  " + MyOrder.OrderedBlocks[0].TotalQuantityOfShape() + " @ $" +
-                              MyOrder.OrderedBlocks[0].Price + " ppi = $" + MyOrder.OrderedBlocks[0].Total());
-        }
-        public void OrderTriangleDetails()
-        {
-            Console.WriteLine("Triangles 		  " + MyOrder.OrderedBlocks[1].TotalQuantityOfShape() + " @ $" +
-                              MyOrder.OrderedBlocks[1].Price + " ppi = $" + MyOrder.OrderedBlocks[1].Total());
-        }
-        public void OrderCircleDetails()
-        {
-            Console.WriteLine("Circles 		  " + MyOrder.OrderedBlocks[2].TotalQuantityOfShape() + " @ $" +
-                              MyOrder.OrderedBlocks[2].Price + " ppi = $" + MyOrder.OrderedBlocks[2].Total());
+            var amount = 0;
+            
+            foreach (var shape in MyOrder.OrderedBlocks)
+            {
+                amount += shape.AdditionalChargeTotal();
+            }
+
+            return amount;
         }
         
+        private void CostingPerItem(string name, int quantity, int price, int total) 
+        {
+            Console.WriteLine("{0}{1} @ ${2} ppi = ${3}",
+                name.PadRight(26), 
+                quantity,
+                price,
+                total);
+        }
+
+        private void OrderShapeDetails()
+        {
+            foreach (var shape in MyOrder.OrderedBlocks)
+            {
+                CostingPerItem(shape.Name, shape.TotalQuantityOfShape(), shape.Price, shape.Total());
+            }
+        }
+        
+        private void RedPaintSurcharge()
+        {
+            CostingPerItem("Red Color Surcharge", TotalAmountOfRedShapes(), 
+                Globals.ExtraChargeForRed, 
+                TotalPriceRedPaintSurcharge());
+        }
+
     }
 }
