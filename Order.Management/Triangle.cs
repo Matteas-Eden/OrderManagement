@@ -17,23 +17,5 @@ namespace Order.Management
             base.YellowShapes = yellowTriangles;
         }
 
-        public override int Total()
-        {
-            return RedTrianglesTotal() + BlueTrianglesTotal() + YellowTrianglesTotal();
-        }
-
-        public int RedTrianglesTotal()
-        {
-            return (base.RedShapes * Price);
-        }
-        public int BlueTrianglesTotal()
-        {
-            return (base.BlueShapes * Price);
-        }
-        public int YellowTrianglesTotal()
-        {
-            return (base.YellowShapes * Price);
-        }
-    
-}
+    }
 }

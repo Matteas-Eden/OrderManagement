@@ -24,7 +24,7 @@ namespace Order.Management
             return RedShapes * Globals.ExtraChargeForRed;
         }
 
-        public virtual int Total()
+        public int Total()
         {
             return TotalQuantityOfShape() * Price;
         }
