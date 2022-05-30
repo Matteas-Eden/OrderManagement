@@ -6,6 +6,7 @@ namespace Order.Management
 {
     class Circle : Shape
     {
+        // Can be made constant private
         public int circlePrice = 3;
         public Circle(int red, int blue, int yellow)
         {

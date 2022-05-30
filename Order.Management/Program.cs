@@ -20,6 +20,7 @@ namespace Order.Management
         }
         
         // Order Circle Input
+        // Can be made private
         public static Circle OrderCirclesInput()
         {
             Console.Write("\nPlease input the number of Red Circle: ");
@@ -34,6 +35,7 @@ namespace Order.Management
         }
         
         // Order Squares Input
+        // Can be made private
         public static Square OrderSquaresInput()
         {
             Console.Write("\nPlease input the number of Red Squares: ");
@@ -48,6 +50,7 @@ namespace Order.Management
         }
 
         // Order Triangles Input
+        // Can be made private
         public static Triangle OrderTrianglesInput()
         {
             Console.Write("\nPlease input the number of Red Triangles: ");
@@ -62,6 +65,7 @@ namespace Order.Management
         }
 
         // User Console Input
+        // Can be made private
         public static string userInput()
         {
             string input = Console.ReadLine();
@@ -74,6 +78,10 @@ namespace Order.Management
             return input;
         }
 
+        /*
+         * All of these 'report' methods take the same params
+         * Probably best to merge them
+         */
         // Generate Painting Report 
         private static void PaintingReport(string customerName, string address, string dueDate, List<Shape> orderedShapes)
         {
@@ -114,6 +122,7 @@ namespace Order.Management
             Triangle triangle = OrderTrianglesInput();
             Circle circle = OrderCirclesInput();
 
+            // Minor refactor; use initialiser
             var orderedShapes = new List<Shape>();
             orderedShapes.Add(square);
             orderedShapes.Add(triangle);

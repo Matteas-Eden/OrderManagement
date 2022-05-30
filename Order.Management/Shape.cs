@@ -6,6 +6,8 @@ namespace Order.Management
 {
     abstract class Shape
     {
+        // Do any of these actually need to be public?
+        // Shouldn't they be either protected or private?
         public string Name { get; set; }
         public int Price { get; set; }
         public int AdditionalCharge { get; set; }

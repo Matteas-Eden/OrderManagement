@@ -4,8 +4,14 @@ using System.Text;
 
 namespace Order.Management
 {
+    /*
+     * I'm not convinced the inheritance makes sense here. Should the report
+     * really extend off of the Order? Would it not make more sense that an Order
+     * object is passed to a method which generates the report?
+     */
     class CuttingListReport : Order
     {
+        // Can be converted to private const
         public int tableWidth = 20;
         public CuttingListReport(string customerName, string customerAddress, string dueDate, List<Shape> shapes)
         {
@@ -21,6 +27,7 @@ namespace Order.Management
             Console.WriteLine(base.ToString());
             generateTable();
         }
+        // Can be made private; only a single usage
         public void generateTable()
         {
             PrintLine();
@@ -31,11 +38,15 @@ namespace Order.Management
             PrintRow("Circle", base.OrderedBlocks[2].TotalQuantityOfShape().ToString());
             PrintLine();
         }
+        // Can also be made private; single usage
         public void PrintLine()
         {
             Console.WriteLine(new string('-', tableWidth));
         }
 
+        // Can also be made private; single usage
+        // Also, why is columns a string array?
+        // Should be integer instead
         public void PrintRow(params string[] columns)
         {
             int width = (tableWidth - columns.Length) / columns.Length;
@@ -49,6 +60,7 @@ namespace Order.Management
             Console.WriteLine(row);
         }
 
+        // Can also be made private; single usage
         public string AlignCentre(string text, int width)
         {
             text = text.Length > width ? text.Substring(0, width - 3) + "..." : text;

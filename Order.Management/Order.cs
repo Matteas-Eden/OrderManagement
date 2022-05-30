@@ -6,6 +6,8 @@ namespace Order.Management
 {
     abstract class Order
     {
+        // More public fields that shouldn't be public
+        // either protected or private
         public string CustomerName { get; set; }
         public string Address { get; set; }
         public string DueDate { get; set; }

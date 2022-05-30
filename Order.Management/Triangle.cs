@@ -6,6 +6,7 @@ namespace Order.Management
 {
     class Triangle : Shape
     {
+        // Can be made constant private
         public int TrianglePrice = 2;
         public Triangle(int numberOfRedTriangles, int numberOfBlueTriangles, int numberOfYellowTriangles)
         {
