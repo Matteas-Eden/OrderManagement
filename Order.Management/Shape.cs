@@ -1,29 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Principal;
 using System.Text;
 
 namespace Order.Management
 {
-    abstract class Shape
+    public abstract class Shape
     {
         // Do any of these actually need to be public?
         // Shouldn't they be either protected or private?
-        public string Name { get; set; }
-        public int Price { get; set; }
-        public int AdditionalCharge { get; set; }
-        public int NumberOfRedShape { get; set; }
-        public int NumberOfBlueShape { get; set; }
-        public int NumberOfYellowShape { get; set; }
+        public string Name { get; protected set; }
+        public int Price { get; protected set;  }
+        public int AdditionalCharge { get; protected set; }
+        public int RedShapes { get; protected set; }
+        public int BlueShapes { get; protected set; }
+        public int YellowShapes { get; protected set; }
         public int TotalQuantityOfShape()
         {
-            return NumberOfRedShape + NumberOfBlueShape + NumberOfYellowShape;
+            return RedShapes + BlueShapes + YellowShapes;
         }
 
         public int AdditionalChargeTotal()
         {
-            return NumberOfRedShape * AdditionalCharge;
+            return RedShapes * AdditionalCharge;
         }
-        public abstract int Total();
+
+        public virtual int Total()
+        {
+            return TotalQuantityOfShape() * Price;
+        }
 
     }
 }

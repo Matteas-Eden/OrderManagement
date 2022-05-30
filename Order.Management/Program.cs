@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 
 namespace Order.Management
 {
@@ -12,11 +13,13 @@ namespace Order.Management
 
             var orderedShapes = CustomerOrderInput();
 
-            InvoiceReport(customerName, address, dueDate, orderedShapes);
+            // This needs a proper way to generate it, but for this
+            // example we'll leave it hardcoded
+            var orderNumber = 1235;
 
-            CuttingListReport(customerName, address, dueDate, orderedShapes);
+            Order customerOrder = new Order(customerName, address, dueDate, orderNumber, orderedShapes);
 
-            PaintingReport(customerName, address, dueDate, orderedShapes);
+            GenerateReports(customerOrder);
         }
         
         // Order Circle Input
@@ -82,25 +85,17 @@ namespace Order.Management
          * All of these 'report' methods take the same params
          * Probably best to merge them
          */
-        // Generate Painting Report 
-        private static void PaintingReport(string customerName, string address, string dueDate, List<Shape> orderedShapes)
+        private static void GenerateReports(Order order)
         {
-            PaintingReport paintingReport = new PaintingReport(customerName, address, dueDate, orderedShapes);
-            paintingReport.GenerateReport();
-        }
-
-        // Generate Painting Report 
-        private static void CuttingListReport(string customerName, string address, string dueDate, List<Shape> orderedShapes)
-        {
-            CuttingListReport cuttingListReport = new CuttingListReport(customerName, address, dueDate, orderedShapes);
-            cuttingListReport.GenerateReport();
-        }
-
-        // Generate Invoice Report 
-        private static void InvoiceReport(string customerName, string address, string dueDate, List<Shape> orderedShapes)
-        {
-            InvoiceReport invoiceReport = new InvoiceReport(customerName, address, dueDate, orderedShapes);
+            InvoiceReport invoiceReport = new InvoiceReport(order, Globals.WideTableWidth);
             invoiceReport.GenerateReport();
+            
+            CuttingListReport cuttingListReport = new CuttingListReport(order, Globals.NarrowTableWidth);
+            cuttingListReport.GenerateReport();
+
+            PaintingReport paintingReport = new PaintingReport(order, Globals.WideTableWidth);
+            paintingReport.GenerateReport();
+
         }
 
         // Get customer Info

@@ -10,39 +10,15 @@ namespace Order.Management
         // Can be made constant private
         public int SquarePrice = 1;
 
-        public Square(int numberOfRedSquares, int numberOfBlueSquares, int numberOfYellowSquares)
+        public Square(int redSquares, int blueSquares, int yellowSquares)
         {
             Name = "Square";
             base.Price = SquarePrice;
             AdditionalCharge = 1;
-            base.NumberOfRedShape = numberOfRedSquares;
-            base.NumberOfBlueShape = numberOfBlueSquares;
-            base.NumberOfYellowShape = numberOfYellowSquares;
+            base.RedShapes = redSquares;
+            base.BlueShapes = blueSquares;
+            base.YellowShapes = yellowSquares;
         }
-
-        // This same implementation is in every child of Shape
-        // Surely bring this up a level?
-        public override int Total()
-        {
-            return RedSquaresTotal() + BlueSquaresTotal() + YellowSquaresTotal();
-        }
-
-        /*
-         * All of the below can be made private
-         * Each of them have only a single usage, which is in
-         * this class.
-         */
-        public int RedSquaresTotal()
-        {
-            return (base.NumberOfRedShape * Price);
-        }
-        public int BlueSquaresTotal()
-        {
-            return (base.NumberOfBlueShape * Price);
-        }
-        public int YellowSquaresTotal()
-        {
-            return (base.NumberOfYellowShape * Price);
-        }
+        
     }
 }

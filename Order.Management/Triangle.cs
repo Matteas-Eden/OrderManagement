@@ -8,14 +8,14 @@ namespace Order.Management
     {
         // Can be made constant private
         public int TrianglePrice = 2;
-        public Triangle(int numberOfRedTriangles, int numberOfBlueTriangles, int numberOfYellowTriangles)
+        public Triangle(int redTriangles, int blueTriangles, int yellowTriangles)
         {
             Name = "Triangle";
             base.Price = TrianglePrice;
             AdditionalCharge = 1;
-            base.NumberOfRedShape = numberOfRedTriangles;
-            base.NumberOfBlueShape = numberOfBlueTriangles;
-            base.NumberOfYellowShape = numberOfYellowTriangles;
+            base.RedShapes = redTriangles;
+            base.BlueShapes = blueTriangles;
+            base.YellowShapes = yellowTriangles;
         }
 
         public override int Total()
@@ -25,15 +25,15 @@ namespace Order.Management
 
         public int RedTrianglesTotal()
         {
-            return (base.NumberOfRedShape * Price);
+            return (base.RedShapes * Price);
         }
         public int BlueTrianglesTotal()
         {
-            return (base.NumberOfBlueShape * Price);
+            return (base.BlueShapes * Price);
         }
         public int YellowTrianglesTotal()
         {
-            return (base.NumberOfYellowShape * Price);
+            return (base.YellowShapes * Price);
         }
     
 }
