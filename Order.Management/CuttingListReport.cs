@@ -27,9 +27,10 @@ namespace Order.Management
             PrintLine();
             PrintRow("        ", "   Qty   ");
             PrintLine();
-            PrintRow("Square",MyOrder.OrderedBlocks[0].TotalQuantityOfShape().ToString());
-            PrintRow("Triangle", MyOrder.OrderedBlocks[1].TotalQuantityOfShape().ToString());
-            PrintRow("Circle", MyOrder.OrderedBlocks[2].TotalQuantityOfShape().ToString());
+            foreach (var shape in MyOrder.OrderedBlocks)
+            {
+                PrintRow(shape.Name, shape.TotalQuantityOfShape().ToString());
+            }
             PrintLine();
         }
 

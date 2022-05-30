@@ -20,15 +20,12 @@ namespace Order.Management
             PrintLine();
             PrintRow("        ", "   Red   ", "  Blue  ", " Yellow ");
             PrintLine();
-            PrintRow("Square", MyOrder.OrderedBlocks[0].RedShapes.ToString(),
-                MyOrder.OrderedBlocks[0].BlueShapes.ToString(),
-                MyOrder.OrderedBlocks[0].YellowShapes.ToString());
-            PrintRow("Triangle", MyOrder.OrderedBlocks[1].RedShapes.ToString(),
-                MyOrder.OrderedBlocks[1].BlueShapes.ToString(),
-                MyOrder.OrderedBlocks[1].YellowShapes.ToString());
-            PrintRow("Circle", MyOrder.OrderedBlocks[2].RedShapes.ToString(),
-                MyOrder.OrderedBlocks[2].BlueShapes.ToString(),
-                MyOrder.OrderedBlocks[2].YellowShapes.ToString());
+            // Would it be going too far to put this into its own overridable method?
+            foreach (var shape in MyOrder.OrderedBlocks)
+            {
+                PrintRow(shape.Name, shape.RedShapes.ToString(), 
+                    shape.BlueShapes.ToString(), shape.YellowShapes.ToString());
+            }
             PrintLine();
         }
         
